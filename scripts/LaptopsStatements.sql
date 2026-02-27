@@ -20,6 +20,8 @@ CREATE TABLE laptops (
     ON UPDATE CASCADE
 );
 
+--DROP TABLE laptops;
+
 --INSERT STATEMENTS
 INSERT INTO laptops (laptop_id, laptop_code, laptop_name, laptop_description, ram, 
 storage_capacity, inch_dimension, laptop_type_id, laptop_buy_price, laptop_sell_price) 

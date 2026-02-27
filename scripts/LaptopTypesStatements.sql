@@ -8,6 +8,8 @@ CREATE TABLE laptop_types (
     PRIMARY KEY (laptop_type_id)
 )
 
+--DROP TABLE laptop_types;
+
 INSERT INTO laptop_types (laptop_type_id, laptop_type_name, 
 laptop_type_code, laptop_ShelfNumber) 
 VALUES
