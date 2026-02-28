@@ -62,14 +62,24 @@ class Laptop
    }
    function saveLaptop() {
     $db = getDB();
-    $query = "INSERT INTO laptops (laptop_id, laptop_code, laptop_name, laptop_description, ram, storage_capacity, inch_dimension, laptop_type_id, laptop_buy_price, laptop_sell_price) 
+    $query = "INSERT INTO laptops (laptop_id, laptop_code, laptop_name, laptop_description, ram, 
+              storage_capacity, inch_dimension, laptop_type_id, laptop_buy_price, laptop_sell_price) 
               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $db->prepare($query);
     // i = integer, s = string, d = double (decimal)
-    $stmt->bind_param("isssiiiddd", 
-        $this->laptopID, $this->laptopCode, $this->laptopName, $this->laptopDescription, 
-        $this->ram, $this->storageCapacity, $this->inchDimension, 
-        $this->laptopTypeID, $this->buyPrice, $this->sellPrice);
+    $stmt->bind_param(
+        "isssiiiddd",
+        $this->laptopID,
+        $this->laptopCode,
+        $this->laptopName,
+        $this->laptopDescription,
+        $this->ram,
+        $this->storageCapacity,
+        $this->inchDimension,
+        $this->laptopTypeID,
+        $this->buyPrice,
+        $this->sellPrice
+    );
        $result = $stmt->execute();
        $db->close();
        return $result;

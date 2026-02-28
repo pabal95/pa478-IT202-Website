@@ -29,7 +29,7 @@ class LaptopType
                $row['laptop_type_id'],
                $row['laptop_type_code'],
                $row['laptop_type_name'],
-               $row['laptop_shelfNumber']
+               $row['laptop_ShelfNumber']
            );
            $db->close();
            return $laptopType;
@@ -41,7 +41,8 @@ class LaptopType
    function saveLaptopType()
    {
        $db = getDB();
-       $query = "INSERT INTO laptop_types VALUES (?, ?, ?, ?)";
+       $query = "INSERT INTO laptop_types (laptop_type_id, laptop_type_code, laptop_type_name, laptop_ShelfNumber) 
+              VALUES (?, ?, ?, ?)";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
            "issi",
@@ -66,7 +67,7 @@ class LaptopType
                    $row['laptop_type_id'],
                    $row['laptop_type_code'],
                    $row['laptop_type_name'],
-                   $row['laptop_shelfNumber']
+                   $row['laptop_ShelfNumber']
                );
                array_push($laptopTypes, $laptopType);
                unset($laptopType);
@@ -82,7 +83,7 @@ class LaptopType
    {
        $db = getDB();
        $query = "UPDATE laptop_types SET laptop_type_code = ?, " .
-           "laptop_type_name = ?, laptop_shelfNumber = ? " .
+           "laptop_type_name = ?, laptop_ShelfNumber = ? " .
            "WHERE laptop_type_id = $this->laptopTypeID";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
