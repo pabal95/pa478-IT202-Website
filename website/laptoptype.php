@@ -29,7 +29,7 @@ class LaptopType
                $row['laptop_type_id'],
                $row['laptop_type_code'],
                $row['laptop_type_name'],
-               $row['laptop_shelf_number']
+               $row['laptop_shelfNumber']
            );
            $db->close();
            return $laptopType;
@@ -66,7 +66,7 @@ class LaptopType
                    $row['laptop_type_id'],
                    $row['laptop_type_code'],
                    $row['laptop_type_name'],
-                   $row['laptop_shelf_number']
+                   $row['laptop_shelfNumber']
                );
                array_push($laptopTypes, $laptopType);
                unset($laptopType);
@@ -82,7 +82,7 @@ class LaptopType
    {
        $db = getDB();
        $query = "UPDATE laptop_types SET laptop_type_code = ?, " .
-           "laptop_type_name = ?, laptop_shelf_number = ? " .
+           "laptop_type_name = ?, laptop_shelfNumber = ? " .
            "WHERE laptop_type_id = $this->laptopTypeID";
        $stmt = $db->prepare($query);
        $stmt->bind_param(

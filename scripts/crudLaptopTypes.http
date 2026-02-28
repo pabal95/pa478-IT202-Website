@@ -3,7 +3,7 @@
 POST http://localhost:3000/addlaptoptype.test.php
 Content-Type: application/x-www-form-urlencoded
 
-laptoptypeID=4
+laptopTypeID=4
 &laptopTypeCode=GAME
 &laptopTypeName=Gaming Laptop
 &laptopShelfNumber=6
@@ -13,7 +13,7 @@ GET http://localhost:3000/listlaptoptypes.test.php
 POST http://localhost:3000/changelaptoptype.test.php
 Content-Type: application/x-www-form-urlencoded
 
-laptoptypeID=4
+laptopTypeID=4
 &laptopTypeCode=ASUSGAME
 &laptopTypeName=Gaming & Studio Laptop
 &laptopShelfNumber=10
@@ -21,4 +21,4 @@ laptoptypeID=4
 POST http://localhost:3000/removelaptoptype.test.php
 Content-Type: application/x-www-form-urlencoded
 
-laptoptypeID=4
+laptopTypeID=4
