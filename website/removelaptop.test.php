@@ -1,3 +1,7 @@
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #2/27/2026 -->
 <?php
 require_once("laptop.php");
 $laptopID = $_POST['laptopID'];

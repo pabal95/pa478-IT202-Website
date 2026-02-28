@@ -1,3 +1,8 @@
+-- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #2/27/2026
+
 CREATE TABLE laptop.laptop_types (
     laptop_type_id      INT             NOT NULL,
     laptop_type_name    VARCHAR(255)    NOT NULL,
