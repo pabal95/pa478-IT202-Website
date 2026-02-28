@@ -5,15 +5,17 @@ class LaptopType
    public $laptopTypeID;
    public $laptopTypeCode;
    public $laptopTypeName;
-   function __construct($laptopTypeID, $laptopTypeCode, $laptopTypeName)
+   public $laptopShelfNumber;
+   function __construct($laptopTypeID, $laptopTypeCode, $laptopTypeName, $laptopShelfNumber)
    {
        $this->laptopTypeID = $laptopTypeID;
        $this->laptopTypeCode = $laptopTypeCode;
        $this->laptopTypeName = $laptopTypeName;
+       $this->laptopShelfNumber = $laptopShelfNumber;
    }
    function __toString()
    {
-       $output = "<h2>$this->laptopTypeID - $this->laptopTypeCode, $this->laptopTypeName</h2>\n";
+       $output = "<h2>$this->laptopTypeID - $this->laptopTypeCode, $this->laptopTypeName, Shelf No: $this->laptopShelfNumber</h2>\n";
        return $output;
    }
    static function findLaptopType($laptopTypeID)
@@ -26,7 +28,8 @@ class LaptopType
            $laptopType = new LaptopType(
                $row['laptop_type_id'],
                $row['laptop_type_code'],
-               $row['laptop_type_name']
+               $row['laptop_type_name'],
+               $row['laptop_shelf_number']
            );
            $db->close();
            return $laptopType;
@@ -38,13 +41,14 @@ class LaptopType
    function saveLaptopType()
    {
        $db = getDB();
-       $query = "INSERT INTO laptop_types VALUES (?, ?, ?)";
+       $query = "INSERT INTO laptop_types VALUES (?, ?, ?, ?)";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
-           "iss",
+           "issi",
            $this->laptopTypeID,
            $this->laptopTypeCode,
-           $this->laptopTypeName
+           $this->laptopTypeName,
+           $this->laptopShelfNumber
        );
        $result = $stmt->execute();
        $db->close();
@@ -61,7 +65,8 @@ class LaptopType
                $laptopType = new LaptopType(
                    $row['laptop_type_id'],
                    $row['laptop_type_code'],
-                   $row['laptop_type_name']
+                   $row['laptop_type_name'],
+                   $row['laptop_shelf_number']
                );
                array_push($laptopTypes, $laptopType);
                unset($laptopType);
@@ -77,13 +82,14 @@ class LaptopType
    {
        $db = getDB();
        $query = "UPDATE laptop_types SET laptop_type_code = ?, " .
-           "laptop_type_name = ? " .
+           "laptop_type_name = ?, laptop_shelf_number = ? " .
            "WHERE laptop_type_id = $this->laptopTypeID";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
-           "ss",
+           "ssi",
            $this->laptopTypeCode,
-           $this->laptopTypeName
+           $this->laptopTypeName,
+           $this->laptopShelfNumber
        );
        $result = $stmt->execute();
        $db->close();

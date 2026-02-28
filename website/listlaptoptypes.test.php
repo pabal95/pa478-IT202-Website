@@ -4,7 +4,7 @@ $laptopTypes = LaptopType::getLaptopTypes();
 if ($laptopTypes) {
   foreach ($laptopTypes as $laptopType) {
      $laptopTypeID = $laptopType->laptopTypeID;
-     $name = $laptopTypeID . " - " . $laptopType->laptopTypeCode . ", " . $laptopType->laptopTypeName;
+     $name = $laptopTypeID . " - " . $laptopType->laptopTypeCode . ", " . $laptopType->laptopTypeName . ", Shelf No: " . $laptopType->laptopShelfNumber;
      echo "$name<br>";
   }
 } else {

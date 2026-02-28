@@ -1,4 +1,4 @@
-CREATE TABLE laptop_types (
+CREATE TABLE laptop.laptop_types (
     laptop_type_id      INT             NOT NULL,
     laptop_type_name    VARCHAR(255)    NOT NULL,
     laptop_type_code    VARCHAR(255)    NOT NULL UNIQUE,
@@ -16,3 +16,5 @@ VALUES
 (1, 'Apple Laptop', 'APPLE', 1),
 (2, '2-in-1 Laptop', '2IN1', 2),
 (3, 'Chromebook', 'CHROME', 3);
+
+SELECT * FROM laptop_types;

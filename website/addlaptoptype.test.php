@@ -8,7 +8,8 @@ if ((trim($laptopTypeID) == '') or (!is_numeric($laptopTypeID))) {
 } else {
   $laptopTypeCode = $_POST['laptopTypeCode'];
   $laptopTypeName = $_POST['laptopTypeName'];
-  $laptopType = new LaptopType($laptopTypeID, $laptopTypeCode, $laptopTypeName);
+  $laptopShelfNumber = $_POST['laptopShelfNumber'];
+  $laptopType = new LaptopType($laptopTypeID, $laptopTypeCode, $laptopTypeName, $laptopShelfNumber);
   $result = $laptopType->saveLaptopType();
   if ($result) {
       echo "<h2>New Laptop Type #$laptopTypeID successfully added</h2>\n";

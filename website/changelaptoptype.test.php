@@ -11,6 +11,7 @@ if ((trim($laptopTypeID) == '') or (!is_numeric($laptopTypeID))) {
   $laptopType->laptopTypeID = $_POST['laptopTypeID'];
   $laptopType->laptopTypeCode = $_POST['laptopTypeCode'];
   $laptopType->laptopTypeName = $_POST['laptopTypeName'];
+  $laptopType->laptopShelfNumber = $_POST['laptopShelfNumber'];
   $result = $laptopType->updateLaptopType();
   if ($result) {
      echo "<h2>Laptop Type $laptopTypeID updated</h2>\n";

@@ -1,0 +1,38 @@
+
+### 1. (C)REATE new laptop 
+POST http://localhost:3000/addlaptop.test.php
+Content-Type: application/x-www-form-urlencoded
+
+laptopID=4
+&laptopCode=ASUSGAME
+&laptopName=Asus Zenbook Pro Duo 15 OLED
+&laptopDescription=The Asus Zenbook Pro Duo 15 OLED is a high-end laptop designed for creative professionals and power users.
+&ram=32
+&storageCapacity=1024
+&inchDimension=15
+&laptopTypeID=4
+&buyPrice=1999.99
+&sellPrice=2499.99
+
+### 2. (R)EAD or list the laptop types 
+GET http://localhost:3000/listlaptops.test.php
+### 3. (U)PDATE the laptop type 
+POST http://localhost:3000/changelaptop.test.php
+Content-Type: application/x-www-form-urlencoded
+
+laptopID=4
+&laptopCode=ASUSZEN
+&laptopName=Asus Zenbook Pro Duo 15
+&laptopDescription=The Asus Zenbook Pro Duo 15 is a high-end laptop designed for creative professionals and power users.
+&ram=32
+&storageCapacity=1024
+&inchDimension=15
+&laptopTypeID=4
+&buyPrice=1999.99
+&sellPrice=2499.99
+
+### 4. (D)ELETE the laptop 
+POST http://localhost:3000/removelaptop.test.php
+Content-Type: application/x-www-form-urlencoded
+
+laptopID=4

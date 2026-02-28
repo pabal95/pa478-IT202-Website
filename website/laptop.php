@@ -2,20 +2,30 @@
 require_once('database.php');
 class Laptop
 {
-   public $laptopID;
+   public $laptopID; 
+   public $laptopCode;
    public $laptopName;
+   public $laptopDescription;
+   public $ram;
+   public $storageCapacity;
+   public $inchDimension;
    public $laptopTypeID;
-   public $listPrice;
+   public $buyPrice;
+   public $sellPrice;
    function __construct(
         $laptopID,
+        $laptopCode,
         $laptopName,
         $laptopTypeID,
-        $listPrice
+        $buyPrice, 
+        $sellPrice
        ) {
        $this->laptopID= $laptopID;
+       $this->laptopCode = $laptopCode;
        $this->laptopName = $laptopName;
        $this->laptopTypeID = $laptopTypeID;
-       $this->listPrice = $listPrice;
+       $this->buyPrice = $buyPrice;
+       $this->sellPrice = $sellPrice;
    }
    static function findLaptop($laptopID)
    {
@@ -26,9 +36,15 @@ class Laptop
        if ($row) {
            $laptop = new Laptop(
                $row['laptop_id'],
+               $row['laptop_code'],
                $row['laptop_name'],
+               $row['laptop_description'],
+               $row['ram'],
+               $row['storage_capacity'],
+               $row['inch_dimension'],
                $row['laptop_type_id'],
-               $row['list_price']
+               $row['laptop_buy_price'],
+               $row['laptop_sell_price']
            );
            $db->close();
            return $laptop;
@@ -41,21 +57,19 @@ class Laptop
    {
        $output = "<h2>Laptop : $this->laptopID</h2>" .
            "<h2>Name: $this->laptopName</h2>\n";
-       "<h2>Type ID: $this->laptopTypeID at $this->listPrice</h2>\n";
+       "<h2>Type ID: $this->laptopTypeID at $this->sellPrice</h2>\n";
        return $output;
    }
-   function saveLaptop()
-   {
-       $db = getDB();
-       $query = "INSERT INTO laptops VALUES (?, ?, ?, ?)";
-       $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "isid",
-           $this->laptopID,     // integer data type
-           $this->laptopName,   // string data type
-           $this->laptopTypeID, // integer data type
-           $this->listPrice   // float data type
-       );
+   function saveLaptop() {
+    $db = getDB();
+    $query = "INSERT INTO laptops (laptop_id, laptop_code, laptop_name, laptop_description, ram, storage_capacity, inch_dimension, laptop_type_id, laptop_buy_price, laptop_sell_price) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $db->prepare($query);
+    // i = integer, s = string, d = double (decimal)
+    $stmt->bind_param("isssiiiddd", 
+        $this->laptopID, $this->laptopCode, $this->laptopName, $this->laptopDescription, 
+        $this->ram, $this->storageCapacity, $this->inchDimension, 
+        $this->laptopTypeID, $this->buyPrice, $this->sellPrice);
        $result = $stmt->execute();
        $db->close();
        return $result;
@@ -70,9 +84,16 @@ class Laptop
            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                $laptop = new Laptop(
                    $row['laptop_id'],
+                   $row['laptop_code'],
                    $row['laptop_name'],
+                   $row['laptop_description'],
+                   $row['ram'],
+                   $row['storage_capacity'],
+                   $row['inch_dimension'],
                    $row['laptop_type_id'],
-                   $row['list_price']
+                   $row['laptop_buy_price'],
+                   $row['laptop_sell_price']
+                   
                );
                array_push($laptops, $laptop);
            }
@@ -86,13 +107,29 @@ class Laptop
    function updateLaptop()
    {
        $db = getDB();
-       $query = "UPDATE laptops SET laptop_name = ?, laptop_type_id = ?, list_price = ? WHERE laptop_id = $this->laptopID";
+       $query = "UPDATE laptops SET 
+                laptop_code = ?, 
+                laptop_name = ?, 
+                laptop_description = ?, 
+                ram = ?, 
+                storage_capacity = ?, 
+                inch_dimension = ?, 
+                laptop_type_id = ?, 
+                laptop_buy_price = ?, 
+                laptop_sell_price = ? 
+              WHERE laptop_id = $this->laptopID";
        $stmt = $db->prepare($query);
        $stmt->bind_param(
-           "sid",
+           "ssssiidddd",
+           $this->laptopCode,   // string data type
            $this->laptopName,   // string data type
+           $this->laptopDescription,   // string data type
+           $this->ram,   // integer data type
+           $this->storageCapacity,   // integer data type
+           $this->inchDimension,   // integer data type
            $this->laptopTypeID, // integer data type
-           $this->listPrice,  // float data type 
+           $this->buyPrice,  // float data type 
+           $this->sellPrice  // float data type 
        );
        $result = $stmt->execute();
        $db->close();

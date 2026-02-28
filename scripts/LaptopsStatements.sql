@@ -1,4 +1,6 @@
-CREATE TABLE laptops (
+USE laptop;
+
+CREATE TABLE laptop.laptops (
     laptop_id          INT             NOT NULL,
     laptop_code        VARCHAR(10)     NOT NULL,
     laptop_name        VARCHAR(255)    NOT NULL,
@@ -37,3 +39,10 @@ VALUES
 (3, "DELLCHROME",
 "Dell Chromebook 2025", "A lightweight and affordable Chromebook for everyday tasks.",
 8, 128, 11, 3, 299.99, 399.99);
+
+SELECT * FROM laptops;
+
+-- SELECT * FROM laptop.laptops
+-- JOIN laptop.laptop_types 
+-- ON laptop.laptops.laptop_type_id = 
+-- laptop.laptop_types.laptop_type_id;

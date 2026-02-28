@@ -9,9 +9,15 @@ if ((trim($laptopID) == '') or (!is_numeric($laptopID))) {
 } else {
    $laptop = Laptop::findLaptop($laptopID);
    $laptop->laptopID = $_POST['laptopID'];
+   $laptop->laptopCode = $_POST['laptopCode'];
    $laptop->laptopName = $_POST['laptopName'];
+   $laptop->laptopDescription = $_POST['laptopDescription'];
+   $laptop->ram = $_POST['ram'];
+   $laptop->storageCapacity = $_POST['storageCapacity'];
+   $laptop->inchDimension = $_POST['inchDimension'];
    $laptop->laptopTypeID = !empty($_POST['laptopTypeID']) ? $_POST['laptopTypeID'] : NULL;
-   $laptop->listPrice = $_POST['listPrice'];
+   $laptop->buyPrice = $_POST['buyPrice'];
+   $laptop->sellPrice = $_POST['sellPrice'];
    $result = $laptop->updateLaptop();
    if ($result) {
        echo "<h2>Laptop $laptopID updated</h2>\n";

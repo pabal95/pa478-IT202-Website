@@ -6,10 +6,20 @@ if ((trim($laptopID) == '') or (!is_numeric($laptopID))) {
 } else if (Laptop::findLaptop($laptopID)) {
   echo "<h2>Sorry, A laptop with the ID #$laptopID already exists</h2>\n";
 } else {
+   $laptopCode = $_POST['laptopCode'];
    $laptopName = $_POST['laptopName'];
+   $laptopDescription = $_POST['laptopDescription'];
+   $ram = $_POST['ram'];
+   $storageCapacity = $_POST['storageCapacity'];
+   $inchDimension = $_POST['inchDimension'];
    $laptopTypeID = !empty($_POST['laptopTypeID']) ? $_POST['laptopTypeID'] : NULL;
-   $listPrice = $_POST['listPrice'];
-   $laptop = new Laptop($laptopID, $laptopName, $laptopTypeID, $listPrice);
+   $buyPrice = $_POST['buyPrice'];
+   $sellPrice = $_POST['sellPrice'];
+
+   // Create the object with all fields
+   $laptop = new Laptop($laptopID, $laptopCode, $laptopName,
+    $laptopDescription, $ram, $storageCapacity, $inchDimension,
+     $laptopTypeID, $buyPrice, $sellPrice);
    $result = $laptop->saveLaptop();
    if ($result)
        echo "<h2>New Laptop #$laptopID successfully added</h2>\n";
