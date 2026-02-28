@@ -40,6 +40,8 @@ VALUES
 "Dell Chromebook 2025", "A lightweight and affordable Chromebook for everyday tasks.",
 8, 128, 11, 3, 299.99, 399.99);
 
+
+
 SELECT * FROM laptops;
 
 -- SELECT * FROM laptop.laptops

@@ -14,7 +14,7 @@ POST http://localhost:3000/changelaptoptype.test.php
 Content-Type: application/x-www-form-urlencoded
 
 laptopTypeID=4
-&laptopTypeCode=ASUSGAME
+&laptopTypeCode=GAMING
 &laptopTypeName=Gaming and Studio Laptop
 &laptopShelfNumber=10
 ### 4. (D)ELETE the laptop type 
