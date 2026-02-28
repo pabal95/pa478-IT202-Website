@@ -14,18 +14,26 @@ class Laptop
    public $sellPrice;
    function __construct(
         $laptopID,
-        $laptopCode,
-        $laptopName,
-        $laptopTypeID,
-        $buyPrice, 
-        $sellPrice
-       ) {
-       $this->laptopID= $laptopID;
-       $this->laptopCode = $laptopCode;
-       $this->laptopName = $laptopName;
-       $this->laptopTypeID = $laptopTypeID;
-       $this->buyPrice = $buyPrice;
-       $this->sellPrice = $sellPrice;
+    $laptopCode,
+    $laptopName,
+    $laptopDescription, 
+    $ram,                
+    $storageCapacity,    
+    $inchDimension,      
+    $laptopTypeID,
+    $buyPrice, 
+    $sellPrice
+) {
+    $this->laptopID = $laptopID;
+    $this->laptopCode = $laptopCode;
+    $this->laptopName = $laptopName;
+    $this->laptopDescription = $laptopDescription; 
+    $this->ram = $ram;                               
+    $this->storageCapacity = $storageCapacity;       
+    $this->inchDimension = $inchDimension;           
+    $this->laptopTypeID = $laptopTypeID;
+    $this->buyPrice = $buyPrice;
+    $this->sellPrice = $sellPrice;
    }
    static function findLaptop($laptopID)
    {
@@ -68,7 +76,7 @@ class Laptop
     $stmt = $db->prepare($query);
     // i = integer, s = string, d = double (decimal)
     $stmt->bind_param(
-        "isssiiiddd",
+        "isssiididd", // 10 characters for 10 placeholders
         $this->laptopID,
         $this->laptopCode,
         $this->laptopName,
@@ -117,7 +125,7 @@ class Laptop
    function updateLaptop()
    {
        $db = getDB();
-       $query = "UPDATE laptops SET 
+    $query = "UPDATE laptops SET 
                 laptop_code = ?, 
                 laptop_name = ?, 
                 laptop_description = ?, 
@@ -128,19 +136,25 @@ class Laptop
                 laptop_buy_price = ?, 
                 laptop_sell_price = ? 
               WHERE laptop_id = $this->laptopID";
-       $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "ssssiidddd",
-           $this->laptopCode,   // string data type
-           $this->laptopName,   // string data type
-           $this->laptopDescription,   // string data type
-           $this->ram,   // integer data type
-           $this->storageCapacity,   // integer data type
-           $this->inchDimension,   // integer data type
-           $this->laptopTypeID, // integer data type
-           $this->buyPrice,  // float data type 
-           $this->sellPrice  // float data type 
-       );
+
+    $stmt = $db->prepare($query);
+
+    // FIX: 9 characters for 9 variables
+    // s = string (code, name, desc)
+    // i = integer (ram, storage, inch, type_id)
+    // d = double (buy_price, sell_price)
+    $stmt->bind_param(
+        "sssiiiidd", 
+        $this->laptopCode,
+        $this->laptopName,
+        $this->laptopDescription,
+        $this->ram,
+        $this->storageCapacity,
+        $this->inchDimension,
+        $this->laptopTypeID,
+        $this->buyPrice,
+        $this->sellPrice
+    );
        $result = $stmt->execute();
        $db->close();
        return $result;
