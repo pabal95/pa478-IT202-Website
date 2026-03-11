@@ -4,7 +4,7 @@
  $emailAddress = filter_var($_POST['email_address']);
  $password = $_POST['password'];
  if(filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
- $query = "SELECT first_name, last_name FROM guitar_users " .
+ $query = "SELECT first_name, last_name FROM laptop_users " .
         "WHERE email_address = ? AND password = SHA2(?,256)";
  $db = getDB();
  $stmt = $db->prepare($query);
