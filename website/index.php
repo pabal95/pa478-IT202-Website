@@ -1,27 +1,20 @@
-<!-- Pabal Ahmed
-2/13/2026
-Phase-01 Login and Logout
-IT202-004 Internet Applications
-pa478@njit.edu -->
-
 <?php
 session_start();
-// require_once(("config.php"));
-require_once("laptoptype.php");
-require_once("laptop.php");
+// require_once("config.php");
+require_once("category.php");
+require_once("item.php");
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Laptop Inventory Website</title></head>
+<head><title>Laptop Inventory Helper</title></head>
 <body>
     <header>
         <?php include("header.inc.php"); ?>
     </header>
     <section style="height: 425px;">
         <nav>
-        <?php include("nav.inc.php"); ?>
+            <?php include("nav.inc.php"); ?>
         </nav>
-    </section>
    <section>
        <main>
            <?php
@@ -34,7 +27,7 @@ require_once("laptop.php");
        </main>
    </section>
    <footer>
-    <?php include("footer.inc.php"); ?>
+         <?php include("footer.inc.php"); ?>
    </footer>
 </body>
 </html>
