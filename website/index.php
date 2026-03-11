@@ -1,8 +1,8 @@
 <?php
 session_start();
 // require_once("config.php");
-require_once("category.php");
-require_once("item.php");
+require_once("laptoptype.php");
+require_once("laptop.php");
 ?>
 <!DOCTYPE html>
 <html>
