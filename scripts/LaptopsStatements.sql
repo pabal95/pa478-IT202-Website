@@ -46,7 +46,7 @@ VALUES
 8, 128, 11, 3, 299.99, 399.99);
 
 
-
+USE laptop;
 SELECT * FROM laptops;
 
 -- SELECT * FROM laptop.laptops
