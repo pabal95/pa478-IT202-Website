@@ -10,26 +10,26 @@
           <td><a href="index.php"><strong>Home</strong></a></td>
         </tr>
         <tr>
-          <td><strong>Categories</strong></td>
+          <td><strong>Laptop Types</strong></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listcategories">
-              <strong>List Categories</strong></a></td>
+          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listlaptoptypes">
+              <strong>List Laptop Types</strong></a></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=newcategory">
-              <strong>Add New Category</strong></a></td>
+          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=newlaptoptype">
+              <strong>Add New Laptop Type</strong></a></td>
         </tr>
         <tr>
-          <td><strong>Items</strong></td>
+          <td><strong>Laptops</strong></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listitems">
-              <strong>List Items</strong></a></td>
+          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listlaptops">
+              <strong>List Laptops</strong></a></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=newitem">
-              <strong>Add New Item</strong></a></td>
+          <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=newlaptop">
+              <strong>Add New Laptop</strong></a></td>
         </tr>
         <tr>
           <td>
@@ -46,8 +46,8 @@
         <tr>
           <td>
             <form action="index.php" method="post">
-              <label>Search for Item:</label><br>
-              <input type="text" name="itemID" size="14" />
+              <label>Search for Laptop:</label><br>
+              <input type="text" name="laptopID" size="14" />
               <input type="submit" value="find" />
               <input type="hidden" name="content" value="updateitem" />
             </form>
@@ -56,8 +56,8 @@
         <tr>
           <td>
             <form action="index.php" method="post">
-              <label>Search for Category:</label><br>
-              <input type="text" name="categoryID" size="14" />
+              <label>Search for Laptop Type:</label><br>
+              <input type="text" name="laptopTypeID" size="14" />
               <input type="submit" value="find" />
               <input type="hidden" name="content" value="displaycategory" />
             </form>
