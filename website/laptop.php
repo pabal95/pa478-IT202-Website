@@ -172,5 +172,34 @@ class Laptop
     $db->close();
     return $result;
    }
+   static function getLaptopsByLaptopType($laptopTypeID)
+   {
+       $db = getDB();
+       $query = "SELECT * FROM laptops WHERE laptop_type_id = $laptopTypeID";
+       $result = $db->query($query);
+       if (mysqli_num_rows($result) > 0) {
+           $laptops = array();
+           while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+               $laptop = new Laptop(
+                   $row['laptop_id'],
+                   $row['laptop_code'],
+                   $row['laptop_name'],
+                   $row['laptop_description'],
+                   $row['ram'],
+                   $row['storage_capacity'],
+                   $row['inch_dimension'],
+                   $row['laptop_type_id'],
+                   $row['laptop_buy_price'],
+                   $row['laptop_sell_price']
+               );
+               array_push($laptops, $laptop);
+           }
+           $db->close();
+           return $laptops;
+       } else {
+           $db->close();
+           return NULL;
+       }
+   }
 }
 ?>
