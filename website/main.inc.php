@@ -25,7 +25,7 @@ if (!isset($_SESSION['login'])) {
    echo "<h2>Welcome , {$_SESSION['login']}</h2>";
 ?>
    <br><br>
-   <p>This program tracks category and item inventory</p>
+   <p>This program tracks laptop types and laptop inventory</p>
    <p>Please use the links in the navigation window</p>
    <p>Please DO NOT use the browser navigation buttons!</p>
    <a href="index.php?content=logout"><strong>Logout</strong></a>

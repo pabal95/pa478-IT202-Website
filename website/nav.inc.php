@@ -49,7 +49,7 @@
               <label>Search for Laptop:</label><br>
               <input type="text" name="laptopID" size="14" />
               <input type="submit" value="find" />
-              <input type="hidden" name="content" value="updateitem" />
+              <input type="hidden" name="content" value="updatelaptop" />
             </form>
           </td>
         </tr>
@@ -59,7 +59,7 @@
               <label>Search for Laptop Type:</label><br>
               <input type="text" name="laptopTypeID" size="14" />
               <input type="submit" value="find" />
-              <input type="hidden" name="content" value="displaycategory" />
+              <input type="hidden" name="content" value="displaylaptoptype" />
             </form>
           </td>
         </tr>
