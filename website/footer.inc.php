@@ -1,3 +1,7 @@
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #3/13/2026 -->
 <p>&copy Laptop Inventory  - Making Laptop Inventory Management Easier</p>
 <p>Pabal Ahmed, IT202-004, Internet Applications, Phase-03, pa478@njit.edu</p>
 <p>

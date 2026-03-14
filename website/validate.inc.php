@@ -1,3 +1,8 @@
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #3/13/2026 -->
+
 <?php
  error_log('$_POST ' . print_r($_POST, true));
  require_once('database.php');

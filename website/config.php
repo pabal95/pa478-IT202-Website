@@ -1,3 +1,8 @@
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #3/13/2026 -->
+
 <?php
 ini_set('display_errors', 0); // Disable error display
 ini_set('log_errors', 1); // Enable error logging

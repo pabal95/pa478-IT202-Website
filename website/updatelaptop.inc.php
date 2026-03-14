@@ -1,3 +1,8 @@
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #3/13/2026 -->
+
 <?php
 if (!isset($_POST['laptopID']) or (!is_numeric($_POST['laptopID']))) {
 ?>

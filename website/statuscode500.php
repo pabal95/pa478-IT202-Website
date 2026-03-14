@@ -1,3 +1,8 @@
+
+<!-- -- #Pabal Ahmed
+-- #IT202-004
+-- #pa478@njit.edu
+-- #3/13/2026 -->
 <h1>Oops! Something went wrong.</h1>
 <p>We encountered an unexpected error while processing your request.</p>
 <p>Please try again later. If the issue persists, contact our support team.</p>
