@@ -100,7 +100,7 @@ footer {
 }
 
 /* 6. HYPERTEXT LINK PSEUDO-CLASSES (Slide 16) */
-a:link { color: #41334a; text-decoration: underline; }
+a:link { color: #5094ec; text-decoration: underline; }
 a:visited { color: #42429c; }
 a:hover { color: #E2DE84; text-decoration: none; }
 a:active { color: #626267; }

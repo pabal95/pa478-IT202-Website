@@ -1,34 +1,33 @@
 <!-- -- #Pabal Ahmed
 -- #IT202-004
 -- #pa478@njit.edu
--- #3/11/2026 -->
+-- #4/2/2026 -->
 
 <?php
 require_once('laptop.php');
+
 if (isset($_SESSION['login'])) {
-$laptopID = $_POST['laptopID'];
-if ((trim($laptopID) == '') or (!is_numeric($laptopID))) {
-   echo "<h2>Sorry, you must enter a valid laptop ID number</h2>\n";
-} else if (Laptop::findLaptop($laptopID)) {
-  echo "<h2>Sorry, A laptop with the ID #$laptopID already exists</h2>\n";
-} else {
-   $laptopCode = $_POST['laptopCode'];
-   $laptopName = $_POST['laptopName'];
-   $laptopDescription = $_POST['laptopDescription'];
-   $ram = $_POST['ram'];
-   $storageCapacity = $_POST['storageCapacity'];
-   $inchDimension = $_POST['inchDimension'];
-   $laptopTypeID = $_POST['laptopTypeID'];
-   $buyPrice = $_POST['buyPrice'];
-   $sellPrice = $_POST['sellPrice'];
-   $laptop = new Laptop($laptopID, $laptopCode, $laptopName, $laptopDescription, $ram, $storageCapacity, $inchDimension, $laptopTypeID, $buyPrice, $sellPrice);
-   $result = $laptop->saveLaptop();
-   if ($result)
-       echo "<h2>New Laptop #$laptopID successfully added</h2>\n";
-   else
-       echo "<h2>Sorry, there was a problem adding that laptop</h2>\n";
+    $laptopID = $_POST['laptopID'];
+    $name = $_POST['laptopName'];
+    $code = $_POST['laptopCode'];
+    $desc = $_POST['laptopDescription'];
+
+    if (strpos($name, "<script") !== false || strpos($code, "<script") !== false || strpos($desc, "<script") !== false) {
+        echo "<h2>Security Error: Script injection detected!</h2>";
+    } else {
+        // Requirement: Check if ID already exists
+        if (Laptop::findLaptop($laptopID)) {
+            echo "<h2>Error: Laptop ID #$laptopID already exists in inventory.</h2>";
+        } else {
+            $laptop = new Laptop($laptopID, $code, $name, $desc, $_POST['ram'], $_POST['storageCapacity'], $_POST['inchDimension'], $_POST['laptopTypeID'], $_POST['buyPrice'], $_POST['sellPrice']);
+            $result = $laptop->saveLaptop();
+            echo $result ? "<h2>Success: Laptop #$laptopID added.</h2>" : "<h2>Problem adding laptop.</h2>";
+        }
+    }
+    echo '<br><a href="index.php?content=listlaptops">Return to List</a>';
 }
-} else {
-  echo "<h2>Sorry, you must be logged in to add a laptop</h2>\n";
+else {
+    echo "<h2>Access Denied: Please log in to add inventory.</h2>";
+    echo '<a href="index.php">Log In</a>';
 }
 ?>

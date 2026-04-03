@@ -1,56 +1,56 @@
-<!-- -- #Pabal Ahmed
--- #IT202-004
--- #pa478@njit.edu
--- #2/27/2026 -->
-
 <?php
+/* -- #Pabal Ahmed
+   -- #IT202-004
+   -- #pa478@njit.edu
+   -- #4/2/2026 */
 require_once('database.php');
-class LaptopType
-{
+
+class LaptopType {
    public $laptopTypeID;
    public $laptopTypeCode;
    public $laptopTypeName;
    public $laptopShelfNumber;
-   function __construct($laptopTypeID, $laptopTypeCode, $laptopTypeName, $laptopShelfNumber)
-   {
+   public $date_time_created;
+
+   // Constructor matches your SQL exactly: 4 editable fields + 1 timestamp
+   function __construct($laptopTypeID, $laptopTypeCode, $laptopTypeName, $laptopShelfNumber, $date_time_created = null) {
        $this->laptopTypeID = $laptopTypeID;
        $this->laptopTypeCode = $laptopTypeCode;
        $this->laptopTypeName = $laptopTypeName;
        $this->laptopShelfNumber = $laptopShelfNumber;
+       $this->date_time_created = $date_time_created;
    }
-   function __toString()
-   {
-       $output = "<h2>$this->laptopTypeID - $this->laptopTypeCode, $this->laptopTypeName, Shelf No: $this->laptopShelfNumber</h2>\n";
-       return $output;
+
+   function __toString() {
+       return "<h2>$this->laptopTypeID - $this->laptopTypeName ($this->laptopTypeCode)</h2>\n";
    }
-   static function findLaptopType($laptopTypeID)
-   {
-       $db = getDB();
-       $query = "SELECT * FROM laptop_types WHERE laptop_type_id = $laptopTypeID";
-       $result = $db->query($query);
-       $row = $result->fetch_array(MYSQLI_ASSOC);
-       if ($row) {
-           $laptopType = new LaptopType(
-               $row['laptop_type_id'],
-               $row['laptop_type_code'],
-               $row['laptop_type_name'],
-               $row['laptop_ShelfNumber']
-           );
-           $db->close();
-           return $laptopType;
-       } else {
-           $db->close();
-           return NULL;
-       }
-   }
-   function saveLaptopType()
-   {
+
+   static function findLaptopType($laptopTypeID) {
+    $db = getDB();
+    $query = "SELECT * FROM laptop_types WHERE laptop_type_id = $laptopTypeID";
+    $result = $db->query($query);
+    $row = $result->fetch_array(MYSQLI_ASSOC);
+    $db->close();
+    if ($row) {
+        // REMOVE 'description' from this return
+        return new LaptopType(
+            $row['laptop_type_id'], 
+            $row['laptop_type_code'], 
+            $row['laptop_type_name'], 
+            $row['laptop_ShelfNumber'], 
+            $row['date_time_created']
+        );
+    }
+    return NULL;
+}
+
+   function saveLaptopType() {
        $db = getDB();
        $query = "INSERT INTO laptop_types (laptop_type_id, laptop_type_code, laptop_type_name, laptop_ShelfNumber) 
-              VALUES (?, ?, ?, ?)";
+                 VALUES (?, ?, ?, ?)";
        $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "issi",
+       // 4 placeholders = 4 variables (i, s, s, i)
+       $stmt->bind_param("issi",
            $this->laptopTypeID,
            $this->laptopTypeCode,
            $this->laptopTypeName,
@@ -60,39 +60,35 @@ class LaptopType
        $db->close();
        return $result;
    }
-      static function getLaptopTypes()
-   {
+
+   static function getLaptopTypes() {
        $db = getDB();
        $query = "SELECT * FROM laptop_types ORDER BY laptop_type_id";
        $result = $db->query($query);
-       if (mysqli_num_rows($result) > 0) {
-           $laptopTypes = array();
-           while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-               $laptopType = new LaptopType(
-                   $row['laptop_type_id'],
-                   $row['laptop_type_code'],
-                   $row['laptop_type_name'],
-                   $row['laptop_ShelfNumber']
-               );
-               array_push($laptopTypes, $laptopType);
-               unset($laptopType);
-           }
-           $db->close();
-           return $laptopTypes;
-       } else {
-           $db->close();
-           return NULL;
+       $laptopTypes = array();
+       while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+           $laptopTypes[] = new LaptopType(
+               $row['laptop_type_id'],
+               $row['laptop_type_code'],
+               $row['laptop_type_name'],
+               $row['laptop_ShelfNumber'],
+               $row['date_time_created']
+           );
        }
+       $db->close();
+       return (count($laptopTypes) > 0) ? $laptopTypes : NULL;
    }
-      function updateLaptopType()
-   {
+
+   function updateLaptopType() {
        $db = getDB();
-       $query = "UPDATE laptop_types SET laptop_type_code = ?, " .
-           "laptop_type_name = ?, laptop_ShelfNumber = ? " .
-           "WHERE laptop_type_id = $this->laptopTypeID";
+       $query = "UPDATE laptop_types SET 
+                    laptop_type_code = ?, 
+                    laptop_type_name = ?, 
+                    laptop_ShelfNumber = ? 
+                  WHERE laptop_type_id = $this->laptopTypeID";
        $stmt = $db->prepare($query);
-       $stmt->bind_param(
-           "ssi",
+       // 3 placeholders = 3 variables (s, s, i)
+       $stmt->bind_param("ssi",
            $this->laptopTypeCode,
            $this->laptopTypeName,
            $this->laptopShelfNumber
@@ -101,12 +97,13 @@ class LaptopType
        $db->close();
        return $result;
    }
-    function removeLaptopType() {
-         $db = getDB();
-         $query = "DELETE FROM laptop_types WHERE laptop_type_id = $this->laptopTypeID";
-         $result = $db->query($query);
-         $db->close();
-         return $result;
-    }
+
+   function removeLaptopType() {
+        $db = getDB();
+        $query = "DELETE FROM laptop_types WHERE laptop_type_id = $this->laptopTypeID";
+        $result = $db->query($query);
+        $db->close();
+        return $result;
+   }
 }
 ?>

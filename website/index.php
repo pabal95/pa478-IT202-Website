@@ -13,29 +13,31 @@ require_once("laptop.php");
 <head>
     <title>Pabal's Laptops | Inventory</title>
     <link rel="stylesheet" type="text/css" href="ih_styles.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
     <header>
         <?php include("header.inc.php"); ?>
     </header>
-    <section style="height: 375px;">
-        <nav>
+
+    <section style="display: flex; min-height: 600px;">
+        <nav style="width: 200px; background-color: #86836D;">
             <?php include("nav.inc.php"); ?>
         </nav>
-   <section>
-       <main>
-           <?php
-           if (isset($_REQUEST['content'])) {
-               include($_REQUEST['content'] . ".inc.php");
-           } else {
-               include("main.inc.php");
-           }
-           ?>
-       </main>
-   </section>
-   <footer>
+        
+        <main style="flex: 1; padding: 20px;">
+            <?php
+            if (isset($_REQUEST['content'])) {
+                // This line looks for files like 'listlaptops.inc.php'
+                include($_REQUEST['content'] . ".inc.php");
+            } else {
+                include("main.inc.php");
+            }
+            ?>
+        </main>
+    </section>
+
+    <footer>
          <?php include("footer.inc.php"); ?>
-   </footer>
+    </footer>
 </body>
 </html>

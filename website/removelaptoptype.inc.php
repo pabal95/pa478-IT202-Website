@@ -6,6 +6,7 @@
 <?php
 error_log('$_POST ' . print_r($_POST, true));
 require_once("laptoptype.php");
+if (isset($_SESSION['login'])) {
 $laptopTypeID = $_POST['laptopTypeID'];
 if ((trim($laptopTypeID) == '') or (!is_numeric($laptopTypeID))) {
  echo "<h2>Sorry, you must enter a valid laptop type ID</h2>\n";
@@ -18,5 +19,9 @@ if ((trim($laptopTypeID) == '') or (!is_numeric($laptopTypeID))) {
    echo "<h2>Laptop Type $laptopTypeID removed</h2>\n";
  else
    echo "<h2>Sorry, problem removing laptop type $laptopTypeID</h2>\n";
+}
+} else {
+  echo "<h2>Sorry, you must be logged in to remove a laptop type</h2>\n";
+  echo '<a href="index.php">Please log in.</a>';
 }
 ?>
