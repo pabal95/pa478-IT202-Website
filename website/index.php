@@ -10,12 +10,16 @@ require_once("laptop.php");
 ?>
 <!DOCTYPE html>
 <html>
-<head><title>Laptop Inventory Helper</title></head>
+<head>
+    <title>Pabal's Laptops | Inventory</title>
+    <link rel="stylesheet" type="text/css" href="ih_styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
 <body>
     <header>
         <?php include("header.inc.php"); ?>
     </header>
-    <section style="height: 425px;">
+    <section style="height: 375px;">
         <nav>
             <?php include("nav.inc.php"); ?>
         </nav>

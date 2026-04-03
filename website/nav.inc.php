@@ -11,10 +11,12 @@
          echo "<td><h3>Welcome, {$_SESSION['login']}</h3></td>";
          ?>
         <tr>
-          <td><a href="index.php"><strong>Home</strong></a></td>
+          <td><img src = "images/home.png" alt="Home Icon" width="16" height="16">&nbsp;
+          <a href="index.php"><strong>Home</strong></a></td>
         </tr>
         <tr>
-          <td><strong>Laptop Types</strong></td>
+          <td><img src = "images/categories.png" alt="Categories Icon" width="16" height="16">&nbsp;
+            <strong>Laptop Types</strong></td>
         </tr>
         <tr>
           <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listlaptoptypes">
@@ -25,7 +27,9 @@
               <strong>Add New Laptop Type</strong></a></td>
         </tr>
         <tr>
-          <td><strong>Laptops</strong></td>
+          <td>
+            <img src = "images/items.png" alt="Items Icon" width="16" height="16">&nbsp;
+            <strong>Laptops</strong></td>
         </tr>
         <tr>
           <td>&nbsp;&nbsp;&nbsp;<a href="index.php?content=listlaptops">
@@ -42,6 +46,8 @@
         </tr>
         <tr>
           <td><a href="index.php?content=logout">
+            <img src = "images/logout.png" alt="Logout Icon" width="16" height="16"></a>&nbsp;
+            <a href="index.php?content=logout">
               <strong>Logout</strong></a></td>
         </tr>
         <tr>
