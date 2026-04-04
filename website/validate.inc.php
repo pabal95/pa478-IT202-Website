@@ -1,31 +1,34 @@
-<!-- -- #Pabal Ahmed
--- #IT202-004
--- #pa478@njit.edu
--- #3/13/2026 -->
-
 <?php
+/* -- #Pabal Ahmed
+ -- #IT202-004
+ -- #pa478@njit.edu
+ -- #4/3/2026 */
  error_log('$_POST ' . print_r($_POST, true));
  require_once('database.php');
- $emailAddress = filter_var($_POST['email_address']);
+ 
+ 
+ $emailAddress = $_POST['email_address'];
  $password = $_POST['password'];
+
  if(filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
- $query = "SELECT first_name, last_name FROM laptop_users " .
-        "WHERE email_address = ? AND password = SHA2(?,256)";
- $db = getDB();
- $stmt = $db->prepare($query);
- $stmt->bind_param("ss", $emailAddress, $password);
- $stmt->execute();
- $stmt->bind_result($firstName, $lastName);
- $fetched = $stmt->fetch();
- $db->close();
- $name = "$firstName $lastName";
- if ($fetched && isset($name)) {
-   $_SESSION['login'] = $name;
-   header("Location: index.php");
- } else {
-   echo "<h2>Sorry, login incorrect</h2>\n";
-   echo "<a href=\"index.php\">Please try again</a>\n";
- }
+     $query = "SELECT first_name, last_name FROM laptop_users " .
+            "WHERE email_address = ? AND password = SHA2(?,256)";
+     $db = getDB();
+     $stmt = $db->prepare($query);
+     $stmt->bind_param("ss", $emailAddress, $password);
+     $stmt->execute();
+     $stmt->bind_result($firstName, $lastName);
+     $fetched = $stmt->fetch();
+     $db->close();
+     $name = "$firstName $lastName";
+     
+     if ($fetched && isset($name)) {
+       $_SESSION['login'] = $name;
+       header("Location: index.php");
+     } else {
+       echo "<h2>Sorry, login incorrect</h2>\n";
+       echo "<a href=\"index.php\">Please try again</a>\n";
+     }
 } else {
   echo "<h2>Please enter a valid email address</h2>\n";
   echo '<a href="index.php">Please try again.</a>';

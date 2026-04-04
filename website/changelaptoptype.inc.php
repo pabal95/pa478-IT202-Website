@@ -1,50 +1,36 @@
 <?php
+/* -- #Pabal Ahmed
+   -- #IT202-004
+   -- #4/3/2026 */
 require_once("laptoptype.php");
 
 if (isset($_SESSION['login'])) {
-    $laptopTypeID = $_POST['laptopTypeID'];
+  
+    $laptopTypeID = filter_input(INPUT_POST, 'laptopTypeID', FILTER_VALIDATE_INT);
     $answer = $_POST['answer'];
 
-    if ((trim($laptopTypeID) == '') or (!is_numeric($laptopTypeID))) {
-        echo "<h2>Sorry, you must enter a valid laptop type ID</h2>\n";
+    if (!is_int($laptopTypeID)) { 
+        echo "<h2>Error: Invalid Laptop Type ID</h2>\n";
     } else if (!LaptopType::findLaptopType($laptopTypeID)) {
-        echo "<h2>Sorry, a laptop type with ID #$laptopTypeID does not exist</h2>\n";
-    } else {
-      
-        if ($answer == "Update Laptop Type") {
-            $laptopType = LaptopType::findLaptopType($laptopTypeID);
-            
-            $code = $_POST['laptopTypeCode'];
-            $name = $_POST['laptopTypeName'];
-            $shelf = $_POST['laptopShelfNumber'];
-
-            
-            if (strpos($name, "<script") !== false || strpos($code, "<script") !== false) {
-                echo "<h2>Security Error: Script injection detected!</h2>";
-                echo "<p>Please avoid using HTML tags in your entries.</p>";
-            } else {
-                // Update properties and save
-                $laptopType->laptopTypeCode = $code;
-                $laptopType->laptopTypeName = $name;
-                $laptopType->laptopShelfNumber = $shelf;
-                
-                $result = $laptopType->updateLaptopType();
-                if ($result) {
-                    echo "<h2>Success: Laptop Type $laptopTypeID has been updated.</h2>\n";
-                } else {
-                    echo "<h2>Error: Problem updating laptop type $laptopTypeID.</h2>\n";
-                }
-            }
+        echo "<h2>Error: Laptop Type #$laptopTypeID not found</h2>\n";
+    } else if ($answer == "Update Laptop Type") {
+        $laptopType = LaptopType::findLaptopType($laptopTypeID);
         
+        $code = $_POST['laptopTypeCode'];
+        $name = $_POST['laptopTypeName'];
+        $shelf = filter_input(INPUT_POST, 'laptopShelfNumber', FILTER_VALIDATE_INT);
+
+        if (!is_int($shelf)) {
+            echo "<h2>Error: Shelf Number must be an integer</h2>";
+        } else if (strpos($name, "<script") !== false || strpos($code, "<script") !== false) {
+            echo "<h2>Security Error: Script injection detected!</h2>";
         } else {
-            echo "<h2>Update Canceled. No changes were made to Laptop Type $laptopTypeID.</h2>\n";
+            $laptopType->laptopTypeCode = $code;
+            $laptopType->laptopTypeName = $name;
+            $laptopType->laptopShelfNumber = $shelf;
+            $result = $laptopType->updateLaptopType();
+            echo $result ? "<h2>Success: Type updated.</h2>" : "<h2>Error: Problem updating.</h2>";
         }
     }
-
-    echo '<br><a href="index.php?content=listlaptoptypes">Return to Laptop Type List</a>';
-
-} else {
-    echo "<h2>Sorry, you must be logged in to update a laptop type.</h2>\n";
-    echo '<a href="index.php">Please log in.</a>';
 }
 ?>
