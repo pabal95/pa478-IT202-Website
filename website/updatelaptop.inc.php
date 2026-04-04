@@ -31,6 +31,21 @@ if (!isset($_POST['laptopID']) or (!is_numeric($_POST['laptopID']))) {
           <td><textarea name="laptopDescription" rows="3" minlength="100" maxlength="255" required><?php echo htmlspecialchars($laptop->laptopDescription); ?></textarea></td>
         </tr>
         <tr>
+          <td>RAM (GB):</td>
+          <td><input type="number" name="ram" min="1" max="256" 
+                    value="<?php echo htmlspecialchars($laptop->ram); ?>" required></td>
+      </tr>
+      <tr>
+          <td>Storage (GB):</td>
+          <td><input type="number" name="storageCapacity" min="1" max="8000" 
+                    value="<?php echo htmlspecialchars($laptop->storageCapacity); ?>" required></td>
+      </tr>
+      <tr>
+          <td>Dimension (in):</td>
+          <td><input type="number" name="inchDimension" min="1" max="100" 
+                    value="<?php echo htmlspecialchars($laptop->inchDimension); ?>" required></td>
+      </tr>
+        <tr>
           <td>Buy Price:</td>
           <td><input type="number" step="0.01" name="buyPrice" min="0.01" max="10000"
                      value="<?php echo htmlspecialchars($laptop->buyPrice); ?>" required></td>

@@ -22,7 +22,7 @@ function validateForm() {
         
         <tr><td>Name:</td><td><input type="text" name="laptopName" minlength="10" maxlength="100" required></td></tr>
         
-        <tr><td>Description:</td><td><textarea name="laptopDescription" rows="3" minlength="100" maxlength="255" required></textarea></td></tr>
+        <tr><td>Description:</td><td><textarea name="laptopDescription" rows="3" minlength="50" maxlength="255" required></textarea></td></tr>
         
         <tr><td>RAM (GB):</td><td><input type="number" name="ram" min="1" max="128" required></td></tr>
         <tr><td>Storage (GB):</td><td><input type="number" name="storageCapacity" min="1" max="8000" required></td></tr>
