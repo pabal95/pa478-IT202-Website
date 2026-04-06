@@ -13,6 +13,7 @@ require_once("laptop.php");
 <head>
     <title>Pabal's Laptops | Inventory</title>
     <link rel="stylesheet" type="text/css" href="ih_styles.css">
+    <script src = "realtime.js"></script>
 </head>
 <body>
     <header>
@@ -34,6 +35,15 @@ require_once("laptop.php");
             }
             ?>
         </main>
+       <?php if (isset($_SESSION['login'])) { ?>
+        <aside>
+            <?php include("aside.inc.php"); ?>
+            <script>
+                getRealTime();
+                setInterval(getRealTime, 5000);
+            </script>
+        </aside>
+        <?php } ?>
     </section>
 
     <footer>

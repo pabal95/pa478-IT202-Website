@@ -137,5 +137,25 @@ class Laptop {
         $db->close();
         return $result;
     }
+    static function getTotalLaptops() {
+        $db = getDB();
+        $query = "SELECT COUNT(laptop_id) FROM laptops";
+        $result = $db->query($query);
+        $row = $result->fetch_array();
+        if ($row) {
+            return $row[0];
+        }
+        return 0;
+    }
+    static function getTotalListPrice() {
+        $db = getDB();
+        $query = "SELECT SUM(laptop_sell_price) FROM laptops";
+        $result = $db->query($query);
+        $row = $result->fetch_array();
+        if ($row) {
+            return $row[0];
+        }
+        return 0;
+    }
 }
 ?>
