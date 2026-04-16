@@ -142,20 +142,26 @@ class Laptop {
         $query = "SELECT COUNT(laptop_id) FROM laptops";
         $result = $db->query($query);
         $row = $result->fetch_array();
-        if ($row) {
-            return $row[0];
-        }
-        return 0;
+        $db->close(); // Mandatory cleanup
+        return $row ? $row[0] : 0;
     }
-    static function getTotalListPrice() {
+
+    static function getTotalSellPrice() {
         $db = getDB();
         $query = "SELECT SUM(laptop_sell_price) FROM laptops";
         $result = $db->query($query);
         $row = $result->fetch_array();
-        if ($row) {
-            return $row[0];
-        }
-        return 0;
+        $db->close(); // Mandatory cleanup
+        return $row ? $row[0] : 0;
     }
+
+    static function getTotalBuyPrice() {
+    $db = getDB();
+    $query = "SELECT SUM(laptop_buy_price) FROM laptops";
+    $result = $db->query($query);
+    $row = $result->fetch_array();
+    $db->close();
+    return $row[0] ? $row[0] : 0;
+}
 }
 ?>

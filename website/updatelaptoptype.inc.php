@@ -36,7 +36,7 @@ if (!isset($_POST['laptopTypeID']) || !is_numeric($_POST['laptopTypeID'])) {
             </table>
             <br>
             <input type="submit" name="answer" value="Update Laptop Type">
-            <input type="submit" name="answer" value="Cancel">
+            <input type="button" value="Cancel" onclick="window.location='index.php?content=listlaptoptypes'">
             <input type="hidden" name="laptopTypeID" value="<?php echo $laptopTypeID; ?>">
             <input type="hidden" name="content" value="changelaptoptype">
         </form>

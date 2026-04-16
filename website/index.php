@@ -7,6 +7,7 @@ session_start();
 require_once("config.php");
 require_once("laptoptype.php");
 require_once("laptop.php");
+ob_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,3 +52,6 @@ require_once("laptop.php");
     </footer>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

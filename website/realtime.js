@@ -1,25 +1,29 @@
+/* -- #Pabal Ahmed | IT202-004 | 4/16/2026 */
 function getRealTime() {
- // retrieve the DOM objects to place the content
- var domcategories = document.getElementById("categorycount");
- var domitems = document.getElementById("itemcount");
- var domlistpricetotal = document.getElementById("listpricetotal");
- // send the GET request to realtime.php to retrieve the data using XMLHttpRequest
- var request = new XMLHttpRequest();
- request.open("GET", "realtime.php", true);
- request.onreadystatechange = function () {
-   if (request.readyState == 4 && request.status == 200) {
-     // parse the XML document to get each data element
-     var xmldoc = request.responseXML;
-     var xmlcategories = xmldoc.getElementsByTagName("categories")[0];
-     var categories = xmlcategories.childNodes[0].nodeValue;
-     var xmlitems = xmldoc.getElementsByTagName("items")[0];
-     var items = xmlitems.childNodes[0].nodeValue;
-     var xmllistpricetotal = xmldoc.getElementsByTagName("listpricetotal")[0];
-     var listpricetotal = xmllistpricetotal.childNodes[0].nodeValue;
-     domcategories.innerHTML = categories;
-     domitems.innerHTML = items;
-     domlistpricetotal.innerHTML = listpricetotal;
-   }
- };
- request.send();
+    var request = new XMLHttpRequest();
+    request.open("GET", "realtime.php", true);
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var xmldoc = request.responseXML;
+
+            // Helper function to format prices with $ and commas
+            function formatVal(tagName) {
+                var node = xmldoc.getElementsByTagName(tagName)[0];
+                var val = node ? node.childNodes[0].nodeValue : "0";
+                return "$" + parseFloat(val).toLocaleString(undefined, {minimumFractionDigits: 2});
+            }
+
+            // Update Laptop Type and Laptop counts
+            document.getElementById("laptoptypecount").innerHTML = 
+                xmldoc.getElementsByTagName("laptoptypecount")[0].childNodes[0].nodeValue;
+            
+            document.getElementById("laptopcount").innerHTML = 
+                xmldoc.getElementsByTagName("laptopcount")[0].childNodes[0].nodeValue;
+
+            // Fix: Correctly mapping the price IDs
+            document.getElementById("sellpricetotal").innerHTML = formatVal("selltotal");
+            document.getElementById("buypricetotal").innerHTML = formatVal("buytotal");
+        }
+    };
+    request.send();
 }

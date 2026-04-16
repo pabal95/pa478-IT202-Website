@@ -46,5 +46,6 @@ function validateForm() {
         <tr><td>Sell Price:</td><td><input type="number" step="0.01" name="sellPrice" min="0.01" max="15000" required></td></tr>
     </table><br>
     <input type="submit" value="Submit New Laptop">
+    <input type="button" value="Cancel" onclick="window.location='index.php?content=listlaptops'">
     <input type="hidden" name="content" value="addlaptop">
 </form>

@@ -105,16 +105,14 @@ class LaptopType {
         $db->close();
         return $result;
    }
-   static function getTotalCategories() {
+  // Replace getTotalCategories with this at the end of laptoptype.php
+static function getTotalLaptopTypes() {
     $db = getDB();
     $query = "SELECT COUNT(laptop_type_id) FROM laptop_types";
     $result = $db->query($query);
     $row = $result->fetch_array();
-    if ($row) {
-        return $row[0];
-    } else {
-        return 0;
-    }
-   }
+    $db->close();
+    return $row ? $row[0] : 0;
+}
 }
 ?>

@@ -15,5 +15,6 @@
         <tr><td>Shelf Number:</td><td><input type="number" name="laptopShelfNumber" min="1" max="100" required></td></tr>
     </table><br>
     <input type="submit" value="Submit New Type">
+    <input type="button" value="Cancel" onclick="window.location='index.php?content=listlaptoptypes'">
     <input type="hidden" name="content" value="addlaptoptype">
 </form>
