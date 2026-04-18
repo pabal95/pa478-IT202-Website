@@ -6,7 +6,7 @@
 <h2>Enter New Laptop Type Information</h2>
 <form name="newlaptoptype" action="index.php" method="post">
     <table>
-        <tr><td>Type ID:</td><td><input type="number" name="laptopTypeID" min="1" max="10" required></td></tr>
+        <tr><td>Type ID:</td><td><input type="number" name="laptopTypeID" min="1" max="9999999" required></td></tr>
         
         <tr><td>Type Code:</td><td><input type="text" name="laptopTypeCode" minlength="2" maxlength="10" required></td></tr>
         

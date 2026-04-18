@@ -56,20 +56,20 @@
         <tr>
           <td>
             <form action="index.php" method="post">
-              <label>Search for Laptop:</label><br>
-              <input type="text" name="laptopID" size="14" />
+              <label>Search Laptop Type ID:</label><br>
+              <input type="text" name="laptopTypeID" size="14" />
               <input type="submit" value="find" />
-              <input type="hidden" name="content" value="updatelaptop" />
+              <input type="hidden" name="content" value="updatelaptoptype" />
             </form>
           </td>
         </tr>
         <tr>
           <td>
            <form action="index.php" method="post">
-            <label>Search for Laptop:</label><br>
+            <label>Search Laptop ID:</label><br>
             <input type="text" name="laptopID" size="14" />
             <input type="submit" value="find" />
-            <input type="hidden" name="content" value="displaylaptop" />
+            <input type="hidden" name="content" value="updatelaptop" />
           </form>
           </td>
         </tr>
