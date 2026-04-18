@@ -65,12 +65,12 @@
         </tr>
         <tr>
           <td>
-            <form action="index.php" method="post">
-              <label>Search for Laptop Type:</label><br>
-              <input type="text" name="laptopTypeID" size="14" />
-              <input type="submit" value="find" />
-              <input type="hidden" name="content" value="displaylaptoptype" />
-            </form>
+           <form action="index.php" method="post">
+            <label>Search for Laptop:</label><br>
+            <input type="text" name="laptopID" size="14" />
+            <input type="submit" value="find" />
+            <input type="hidden" name="content" value="displaylaptop" />
+          </form>
           </td>
         </tr>
       </table>

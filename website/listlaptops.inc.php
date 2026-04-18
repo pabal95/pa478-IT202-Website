@@ -10,12 +10,13 @@ function laptop_dblclick() {
 function laptop_button_click(target) {
     var userConfirmed = true;
     if (target == 1) {
-        // CHANGE THIS: Route the 'View' button to the Update page instead
-        document.laptops.content.value = "updatelaptop";
+        // Change this from 'updatelaptop' to 'displaylaptop'
+        document.laptops.content.value = "displaylaptop";
     } else if (target == 2) {
         userConfirmed = confirm("Are you sure you want to delete this laptop?");
         document.laptops.content.value = "removelaptop";
     } else if (target == 3) {
+        // Target 3 remains 'updatelaptop' for the actual Update button
         document.laptops.content.value = "updatelaptop";
     }
 

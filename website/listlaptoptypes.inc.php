@@ -10,12 +10,13 @@ function listbox_dblclick() {
 function button_click(target) {
     var userConfirmed = true;
     if (target == 1) {
-        // Change from 'displaylaptoptype' to 'updatelaptoptype'
-        document.laptopTypes.content.value = "updatelaptoptype";
+        // Change this BACK to 'displaylaptoptype' so the View button actually VIEWS
+        document.laptopTypes.content.value = "displaylaptoptype";
     } else if (target == 2) {
         userConfirmed = confirm("Are you sure you want to remove this laptop type?");
         document.laptopTypes.content.value = "removelaptoptype";
     } else if (target == 3) {
+        // Target 3 is the actual Update button, so this stays as updatelaptoptype
         document.laptopTypes.content.value = "updatelaptoptype";
     }
 

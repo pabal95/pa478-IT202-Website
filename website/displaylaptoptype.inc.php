@@ -47,13 +47,18 @@ if (!isset($_REQUEST['laptopTypeID']) or (!is_numeric($_REQUEST['laptopTypeID'])
          <td><b><?php echo '$' . number_format($itemtotal, 2); ?></b></td>
        </tr>
      </table>
+     <br>
+     <input type="button" value="Back to Laptop Types" 
+            onclick="window.location.href='index.php?content=listlaptoptypes'">
 <?php
    } else {
      echo "<h2>There are no laptops for this category</h2>\n";
+     // Add back button even if no laptops exist
+     echo '<br><input type="button" value="Back to List" onclick="window.location.href=\'index.php?content=listlaptoptypes\'">';
    }
  } else {
-   // Use $laptopTypeID for the error message
    echo "<h2>Sorry, laptop category $laptopTypeID not found</h2>\n";
+   echo '<br><input type="button" value="Back to List" onclick="window.location.href=\'index.php?content=listlaptoptypes\'">';
  }
 }
 ?>
